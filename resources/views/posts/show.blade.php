@@ -4,7 +4,9 @@
     <head>
         <meta charset="utf-8">
          <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <title>Blog.02</title>
+
+        <title>Blog</title>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
