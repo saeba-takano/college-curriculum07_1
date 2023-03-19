@@ -3,12 +3,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
  
 class PostController extends Controller
 {
+
     //use宣言は外部にあるクラスをインポートする
 
     public function index(Post $post)
@@ -42,4 +44,6 @@ class PostController extends Controller
         
     }
 
+
 }
+?>
