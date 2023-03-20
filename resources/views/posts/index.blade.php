@@ -25,6 +25,7 @@
         </div>
         <div class = 'paginate'>{{ $posts->links()}}</div>
         <a href='/posts/create'>create</a>
+
         <script>
             function deletePost(id){
                 'use strict'
@@ -33,5 +34,6 @@
                 }
             }
         </script>
+
     </body>
 </html>
