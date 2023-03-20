@@ -9,6 +9,7 @@
     </head>
     <body>
         <h1>投稿の一覧表示</h1>
+        <p>example</p>
         <div class = 'posts'> <!--記事一覧をまとめている。ここのpostsは単なるhtmlのクラス名-->
            @foreach($posts as $post)<!--with内の青地のpostsは$posts.$postもわかりやすいように単数かたちなだけで、なんでもいい。-->
              　 <div = 'post'>
