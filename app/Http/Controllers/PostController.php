@@ -12,7 +12,7 @@ class PostController extends Controller
      //use宣言は外部にあるクラスをインポートする
     public function index(Post $post)
         {
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);  
+        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(5)]);  
        //blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入。
         }
     
@@ -28,14 +28,25 @@ class PostController extends Controller
     public function store(PostRequest $request, Post $post)
      //ユーザーからのリクエストに含まれるデータを扱う場合、Requestインスタンスを使う。
      //入力データをDBのpostsテーブルに保存する必要があるため、空のPostインスタンスを利用する。
-     { $input = $request['post'];
+        { $input = $request['post'];
         //postをキーに持つリクエストパラメーターを取得することができる。
         //$requestのキーはHTMLのFormタグで定義したname属性と一致する。
         $post->fill($input)->save();
         //空だったPostインスタンスのプロパティを受けとったキーごとに上書きができる。
         //$post->create($input)でも同じ挙動。
         return redirect('/posts/'. $post->id);
-     }
+        }
+    public function edit(Post $post)
+        {
+            return view('posts/edit')->with(['post' => $post]);
+        }
+    public function update(PostRequest $request, Post $post)
+        {
+            $imput_post = $request['post'];
+            $post->fill($imput_post)->save();
+            return redirect('/posts/'.$post->id);
+        }
+    
  
 }
    
