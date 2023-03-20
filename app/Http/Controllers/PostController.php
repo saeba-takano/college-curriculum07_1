@@ -36,6 +36,22 @@ class PostController extends Controller
         //$post->create($input)でも同じ挙動。
         return redirect('/posts/'. $post->id);
      }
+    public function edit(Post $post)
+        {
+            return view('posts/edit')->with(['post' => $post]);
+        }
+    public function update(PostRequest $request, Post $post)
+        {
+            $imput_post = $request['post'];
+            $post->fill($imput_post)->save();
+            return redirect('/posts/'.$post->id);
+        }
+    public function delete(Post $post)
+        {
+            $post->delete();
+            return redirect('/');
+        }
+    
  
 }
    
