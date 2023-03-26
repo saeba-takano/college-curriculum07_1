@@ -6,6 +6,9 @@
         <title>Blog</title>
         <!-- Fonts -->
     </head>
+     <x-app-layout>
+            <x-slot name="header">
+                header
     <body>
         <h1>Blog Name</h1>
         <form action="/posts/{{ $post->id }}" method="POST">
@@ -26,3 +29,4 @@
         <div class="footer">
             <a href="/posts/{{ $post->id }}">戻る</a>
     </body>
+    </x-app-layout>

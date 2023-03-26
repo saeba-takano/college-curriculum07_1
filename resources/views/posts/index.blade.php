@@ -7,25 +7,31 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
+    <x-app-layout>
+            <x-slot name="header">
+                header
     <body>
         <h1>投稿の一覧表示</h1>
-        <p>example</p>
         <div class = 'posts'> <!--記事一覧をまとめている。ここのpostsは単なるhtmlのクラス名-->
            @foreach($posts as $post)<!--with内の青地のpostsは$posts.$postもわかりやすいように単数かたちなだけで、なんでもいい。-->
-             　 <div = 'post'>
+             　 <div = 'post'><!--$postはここで定義されているため、$postを使う場合はこのdiv内で使う-->
                  <h2 class = 'title'>{{ $post->title }}<!--記事のタイトル--></h2>
                     <a href="/posts/{{$post->id}}">{{$post->title}}</a>
                     <p class='body'>{{ $post->body }}</p>
+                    <a href="/categories/{{$post->category->id}}">{{$post->category->name}}</a>
                     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="button" onclick="deletePost({{ $post->id }})">delete</button>
                     </form>
                 </div>
+                
            @endforeach
         </div>
         <div class = 'paginate'>{{ $posts->links()}}</div>
         <a href='/posts/create'>create</a>
+
+        <p>ログインユーザー名：{{Auth::user()->name}}</p>
 
         <script>
             function deletePost(id){
@@ -37,4 +43,5 @@
         </script>
 
     </body>
+    </x-app-layout>
 </html>

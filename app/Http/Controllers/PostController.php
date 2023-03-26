@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
  use Illuminate\Http\Request;
  use App\Http\Requests\PostRequest;
  use App\Models\Post;
+ use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -23,16 +24,18 @@ class PostController extends Controller
         return view('posts/show')->with(['post' => $post]);
  //'post'はbladeファイルで使う変数。中身は$postはid=1のPostインスタンス。
         }
+        
+    public function create(Category $category)
 
-    public function create()
         {
-     return view('posts/create');
-         }
+        return view('posts/create')->with(['categories' => $category->get()]);
+        }
+         
     public function store(PostRequest $request, Post $post)
      //ユーザーからのリクエストに含まれるデータを扱う場合、Requestインスタンスを使う。
      //入力データをDBのpostsテーブルに保存する必要があるため、空のPostインスタンスを利用する。
-        { $input = $request['post'];
 
+         { $input = $request['post'];
         //postをキーに持つリクエストパラメーターを取得することができる。
         //$requestのキーはHTMLのFormタグで定義したname属性と一致する。
         $post->fill($input)->save();
@@ -41,17 +44,21 @@ class PostController extends Controller
         return redirect('/posts/'. $post->id);
 
         }
+     
 
     public function edit(Post $post)
         {
             return view('posts/edit')->with(['post' => $post]);
         }
+        
     public function update(PostRequest $request, Post $post)
         {
             $imput_post = $request['post'];
             $post->fill($imput_post)->save();
             return redirect('/posts/'.$post->id);
         }
+
+        
 
     public function delete(Post $post)
         {
