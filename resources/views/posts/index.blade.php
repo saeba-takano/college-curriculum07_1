@@ -30,7 +30,9 @@
         </div>
         <div class = 'paginate'>{{ $posts->links()}}</div>
         <a href='/posts/create'>create</a>
+
         <p>ログインユーザー名：{{Auth::user()->name}}</p>
+
         <script>
             function deletePost(id){
                 'use strict'
@@ -39,6 +41,7 @@
                 }
             }
         </script>
+
     </body>
     </x-app-layout>
 </html>
